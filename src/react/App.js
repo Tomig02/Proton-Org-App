@@ -1,18 +1,18 @@
 import React, {Fragment, useState} from 'react';
 import NavBar from './components/NavBar';
-
+import NoteView from './view/NoteView';
 export default function app(){
 
     const [route, setRoute] = useState('notes');
 
-    // const switchRoute = () => {
-    //     switch (route) {
-    //         case 'week':
-    //             return <WeekView/>;
-    //         default:
-    //             return <NoteView/>;
-    //     }
-    // }
+    const SwitchRoute = () => {
+        switch (route) {
+            case 'week':
+                return <h1>ABC</h1>//<WeekView/>;
+            default:
+                return <NoteView/>;
+        }
+    }
 
     return(
         <Fragment>
@@ -20,8 +20,9 @@ export default function app(){
 
             <div className="view-container">
                 <h1>{route}</h1>
+                <SwitchRoute/>
             </div>
-            {/* {switchRoute()} */}
+            
         </Fragment>
     );
 }

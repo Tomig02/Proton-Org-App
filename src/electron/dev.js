@@ -1,5 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const Store = require('electron-store');
+Store.initRenderer();
 
 try {
     require('electron-reloader')(module);

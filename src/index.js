@@ -2,5 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './react/App';
 import './assets/scss/styles.css';
-
-ReactDOM.render(<App />, document.getElementById('app'));
+import {DataProvider} from './react/context/DataContext';
+ReactDOM.render(
+    <DataProvider>
+        <App />
+    </DataProvider>, 
+    document.getElementById('app'));
