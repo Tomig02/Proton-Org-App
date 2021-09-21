@@ -1,32 +1,67 @@
 const packager = require('electron-packager');
-const electronInstaller = require('electron-winstaller');
+const WinInstall = require('electron-winstaller');
+const Debianinstaller = require('electron-installer-debian')
 
-async function build(options) {
-    const appPaths = await packager(options);
-
-    console.log(`✅ App build ready in: ${appPaths.join('\n')}, creating installer...`);
-
-    try {
-        await electronInstaller.createWindowsInstaller({
-            appDirectory: './dist/app-win32-ia32',
-            outputDirectory: './dist/installer',
-            authors: 'Weekly Webtips',
-            description: '📦🚀 Electron app using React, built with Parcel',
-            exe: 'app.exe'
-        });
-
-        console.log('💻 Installer is created in dist/installer');
-    } catch (e) {
-        console.log(`The following error occured: ${e.message}`);
-    }
-};
-
-build({
-    name: 'app',
+const common = {
+    name: 'Organize',
     dir: './',
     out: 'dist',
     overwrite: true,
-    asar: true,
-    platform: 'win32',
-    arch: 'ia32'
-});
+    asar: true
+}
+
+const linux = async () => {
+    console.log('starting linux build');
+
+    try{
+        const appPaths = await packager({
+            ...common,
+            executableName: 'proton_org_app',
+            platform: 'linux',
+            arch: 'x64'
+        });
+
+        console.log(`✅ App build ready in: ${appPaths.join('\n')}, creating installer...`);
+
+        await Debianinstaller({
+            src: 'dist/Organize-linux-x64/',
+            dest: 'dist/installers/debian',
+            arch: 'amd64',
+            icon: 'public/favicon.ico'
+        });
+
+        console.log('✅ Linux installer ready');
+    }catch(err){
+        console.log('Linux failed' + err);
+    }
+};
+linux();
+
+const windows = async () => {
+    console.log('starting windows build');
+
+    try{
+        const appPaths = await packager({
+            ...common,
+            platform: 'win32',
+            arch: 'ia32'
+        });
+
+        console.log(`✅ App build ready in: ${appPaths.join('\n')}, creating installer...`);
+
+        await WinInstall.createWindowsInstaller({
+            appDirectory: './dist/Organize-win32-ia32',
+            outputDirectory: './dist/installers/windows',
+            exe: 'Organize.exe'
+        });
+
+        console.log('✅ Windows installer ready');
+    }
+    catch(err){
+        console.log('Windows failed' + err.message);
+    }
+};
+windows();
+
+
+//TODO macOS installer

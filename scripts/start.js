@@ -7,7 +7,7 @@ const options = {
     sourceMaps: false,
     autoInstall: false,
     hmr: false,
-    target: 'electron'
+    target: 'electron',
 };
 
 let electronStarted = false;

@@ -6,13 +6,21 @@
     "scripts": {
         "start": "node scripts/start.js",
         "electron": "electron .",
-        "build": "node scripts/build.js"
+        "build": "node scripts/build.js",
+        "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=public/icon.icns --prune=true --out=release-builds",
+        "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=public/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\"",
+        "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=public/icon.png --prune=true --out=release-builds"
     },
     "keywords": [
         "react",
         "electron",
         "parcel"
     ],
+    "build": {
+        "files": [
+            "build/*"
+        ]
+    },
     "author": "Tomas Guardo",
     "license": "MIT",
     "dependencies": {
@@ -22,6 +30,7 @@
     },
     "devDependencies": {
         "electron": "11.1.1",
+        "electron-installer-debian": "^3.1.0",
         "electron-packager": "15.2.0",
         "electron-reloader": "1.1.0",
         "electron-winstaller": "4.0.1",

@@ -1,5 +1,6 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow} = require('electron');
 const path = require('path');
+
 const Store = require('electron-store');
 Store.initRenderer();
 
@@ -9,14 +10,13 @@ try {
 
 function createWindow(){
     const win = new BrowserWindow({
+        icon: path.join(__dirname, 'public/favicon.png'),
         width: 800,
         height: 600,
         webPreferences: {
             nodeIntegration: true,
-            // preload: path.join(__dirname, 'preload.js')
         }
     });
-
     win.loadFile('build/index.html');
 }
 
@@ -26,7 +26,7 @@ app.on('window-all-closed', function () {
 
 app.whenReady().then(() => {
     createWindow()
-  
+
     app.on('activate', function () {
       if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
