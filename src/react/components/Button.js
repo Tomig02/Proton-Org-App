@@ -11,10 +11,8 @@ export default function Button(props){
     const classString = `${className} ${btnText? "button": 'icon-button'}`
     return(
         <button style={style} className={classString} onClick={action}>
-            <div>
-                {imgSrc? <i className={imgSrc}></i>: null}
-                {btnText}
-            </div>
+            {imgSrc? <i className={imgSrc}></i>: null}
+            {btnText}
         </button>
     )
 }
