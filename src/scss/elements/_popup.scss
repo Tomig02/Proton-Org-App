@@ -1,0 +1,49 @@
+
+$main-bg: #222222;
+.popup-bg{
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(#000000, 0.85);
+    position: fixed;
+
+    left: 0;
+    top: 0;
+}
+.popup-panel{
+    padding: 2rem;
+    max-width: 80%;
+    width: 30rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: $main-bg;
+    border-radius: 0.5rem;
+    color: white;
+    border: 1px solid black;
+
+    position: relative;
+
+    p{
+        margin-bottom: 1.5rem ;
+    }
+    label{
+        align-self: flex-start;
+    }
+    input{
+        margin-bottom: 1.5rem;
+    }
+    .close-btn{
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        margin: -1rem;
+    }
+}
