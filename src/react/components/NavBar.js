@@ -1,4 +1,5 @@
 import React from 'react';
+import path from 'path';
 
 export default function NavBar({route, setRoute}){
 
@@ -20,7 +21,7 @@ export default function NavBar({route, setRoute}){
 
     return(
         <nav>
-            <i className='bx bx-medal' ></i>
+            <img src={path.join(__dirname + "/icon/favicon.png")}/>
             
             <div className="btn-container">
                 <NavBtn icon="bx bx-notepad" routeStr="notes"/>
